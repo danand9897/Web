@@ -1,0 +1,97 @@
+<%- include('../comunes/cabecera') %>
+
+<h1>Editar Material de Construcción</h1>
+<div class="container">
+
+    <% const existePlanta = typeof datos.mensaje !== 'undefined' %>
+    <%  if(existePlanta) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.mensaje %>
+        </div>
+    <%} %>
+
+
+
+    <br>
+    <form style="padding: 10px" class="border border-dark" action='/planta/editar-planta-formulario/<%=datos.planta.id%>' method="post">
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label"> Nombre </label>
+            <input value= <%= datos.planta.nombreComun%>
+                   type="text"
+                   name="nombre"
+                   class="form-control"
+                   id="nombre"
+                   aria-describedby="ayudaNombre"
+                   required>
+            <div id="ayudaNombre" class="form-text">
+                Ingrese el nombreComun.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="marca" class="form-label"> Marca </label>
+            <input value=<%= datos.planta.nombreCientifico%>
+                   type="text"
+                   name="marca"
+                   class="form-control"
+                   id="marca"
+                   aria-describedby="ayudamarca"
+                   required>
+            <div id="ayudamarca" class="form-text">
+                Ingrese la nombreCientifico.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label"> Precio ($) </label>
+            <input value=<%= datos.planta.precio%>
+                   type="number"
+                   step="0.01"
+                   name="precio"
+                   class="form-control"
+                   id="precio"
+                   aria-describedby="ayudaprecio"
+                   required>
+            <div id="ayudaprecio" class="form-text">
+                Ingrese el precio.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="tipo" class="form-label"> Tipo </label>
+            <input value=<%= datos.planta.familia%>
+                   type="text"
+                   name="tipo"
+                   class="form-control"
+                   id="tipo"
+                   aria-describedby="ayudatipo"
+                   required>
+            <div id="ayudatipo" class="form-text">
+                Ingrese el tipo.
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label>
+                <input type="checkbox"
+                       name="stock"
+                       id="stock"
+
+                       <%if(datos.planta.stock){%>
+                           checked="checked"
+                        <%}%>
+
+                >
+                Stock
+            </label>
+
+            <div id="ayudastock" class="form-text">
+                Ingrese el stock, si hay o no.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Actualizar</button>
+    </form>
+</div>
+<br>
+
+
+<%- include('../comunes/footer') %>
